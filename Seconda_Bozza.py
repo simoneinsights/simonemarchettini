@@ -92,23 +92,23 @@ def avvia_gioco():
 
         # Crea una lista per le domande suggerite
         tipo_richiesta = "futuro" if "Futuro" in scelta else "simone"
-        domande_suggerite = suggerisci_domande(tipo_richiesta)
+        domande_suggerite = ["Seleziona un suggerimento"] + suggerisci_domande(tipo_richiesta)
         
-        # Mostra i suggerimenti con pulsanti per copiare
-        st.write("💡 Suggerimenti di domande:")
-        for domanda in domande_suggerite:
-            if st.button(f"Copia: {domanda}"):
-                st.session_state['domanda'] = domanda  # Imposta la domanda selezionata
-                st.success(f"Domanda copiata: {domanda}")
+        # Crea un menu a tendina per scegliere il suggerimento
+        domanda_scelta = st.selectbox("💡 Scegli una domanda suggerita:", domande_suggerite)
 
-        # Mostra il campo di input per la domanda
-        domanda = st.text_input("Fai una domanda:", value=st.session_state['domanda'])  # Mantieni il campo vuoto per l'input dell'utente
+        # Se una domanda suggerita è stata selezionata, aggiorna il campo di input
+        if domanda_scelta != "Seleziona un suggerimento":
+            st.session_state['domanda'] = domanda_scelta
+
+        # Mostra il campo di input per la domanda, precompilato se una domanda è stata scelta
+        domanda = st.text_input("Fai una domanda:", value=st.session_state['domanda'])  # Precompila il campo se c'è una domanda nel session state
 
         # Colonne per i pulsanti "Chiedi alla Magic Ball" e "Cancella"
         col1, col2 = st.columns([2, 1])  # La prima colonna sarà più larga
 
         with col1:
-            if st.button("Chiedi alla Magic 8 Ball"):
+            if st.button("Chiedi alla Magic Ball"):
                 if not domanda.strip():
                     st.warning("Per favore, inserisci una domanda!")
                 else:
@@ -119,6 +119,7 @@ def avvia_gioco():
         with col2:
             if st.button("Cancella"):
                 st.session_state['domanda'] = ''  # Resetta il campo di input
+                st.rerun()  # Forza il ricaricamento immediato
 
         if st.button("Chiudi il gioco"):
             termina_gioco()

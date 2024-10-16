@@ -76,7 +76,7 @@ def avvia_gioco():
     st.write("\n" * 4)  # Spazio vuoto per la formattazione
 
     if st.session_state['gioco_attivo']:
-        if not st.session_state['mostra_messaggi_iniziali']:
+        if not st.session_state['introduzione']:
             introduzione_gioco()
             st.session_state['introduzione'] = True
 

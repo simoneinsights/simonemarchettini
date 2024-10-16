@@ -71,6 +71,7 @@ def avvia_gioco():
             introduzione_gioco()
             st.session_state['introduzione'] = True
 
+        # Selezione del tipo di domanda
         scelta = st.radio("🛣️ Scegli la tua strada:", 
                           ("🔮 Futuro: Scopri cosa ti attende oltre l'orizzonte!", 
                            "🤹‍♂️ Simone: Esplora il mondo affascinante delle sue abilità nascoste!"))
@@ -78,16 +79,17 @@ def avvia_gioco():
         tipo_richiesta = "futuro" if "Futuro" in scelta else "simone"
         domande_suggerite = ["Seleziona un suggerimento"] + suggerisci_domande(tipo_richiesta)
 
-        # Dropdown di suggerimenti
+        # Dropdown per domande suggerite
         domanda_scelta = st.selectbox("💡 Scegli una domanda suggerita:", domande_suggerite)
 
-        # Non importa cosa venga selezionato, l'input è indipendente da suggerimenti
-        st.session_state['domanda'] = domanda_scelta if domanda_scelta != "Seleziona un suggerimento" else st.session_state['domanda']
+        # Non modifica il testo in input a meno che non sia selezionata una domanda diversa da "Seleziona un suggerimento"
+        if domanda_scelta != "Seleziona un suggerimento":
+            st.session_state['domanda'] = domanda_scelta
 
         # Campo input per la domanda
         domanda = st.text_input("Fai una domanda:", value=st.session_state['domanda'])
 
-        # Colonne per i pulsanti
+        # Colonne per pulsanti
         col1, col2 = st.columns([2, 1])
 
         with col1:
@@ -100,8 +102,9 @@ def avvia_gioco():
                     st.success(f"🎱 La Magic 8 Ball dice: {risposta}")
 
         with col2:
+            # Cancella il campo input senza considerare la selezione nel dropdown
             if st.button("Cancella"):
-                st.session_state['domanda'] = ''  # Cancella sempre il campo
+                st.session_state['domanda'] = ''  # Resetta sempre la domanda
                 st.rerun()
 
         if st.button("Chiudi il gioco"):

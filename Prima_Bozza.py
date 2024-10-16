@@ -1,16 +1,4 @@
-import streamlit as st
-import time
-import random
 
-# Inizializza lo stato della sessione
-if 'gioco_attivo' not in st.session_state:
-    st.session_state['gioco_attivo'] = True  # Indica se il gioco è attivo
-if 'mostra_messaggi' not in st.session_state:
-    st.session_state['mostra_messaggi'] = False  # Controlla se i messaggi iniziali sono già stati mostrati
-
-# Funzione per mostrare i messaggi con ritardo
-def mostra_messaggi_con_ritardo():
-    messaggio = st.empty()
     time.sleep(1)
     messaggio.write("🎱 Benvenuto nella Magic 8 Ball!")
     time.sleep(3)

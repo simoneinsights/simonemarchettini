@@ -97,7 +97,8 @@ def avvia_gioco():
                     st.session_state['domanda'] = esempio_domanda  # Salva la domanda nel session state
                     st.experimental_rerun()  # Ricarica la pagina per aggiornare l'input
 
-        domanda = st.text_input("Fai una domanda sul futuro:", value=st.session_state['domanda'])  # Precompila il campo se c'è una domanda nel session state
+        # Mostra il campo di input per la domanda
+        domanda = st.text_input("Fai una domanda:", value=st.session_state['domanda'])  # Precompila il campo se c'è una domanda nel session state
 
         if "Futuro" in scelta:
             if st.button("Chiedi alla Magic Ball"):

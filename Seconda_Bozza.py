@@ -92,17 +92,17 @@ def avvia_gioco():
 
         # Crea una lista per le domande suggerite
         tipo_richiesta = "futuro" if "Futuro" in scelta else "simone"
-        domande_suggerite = ["Seleziona un suggerimento"] + suggerisci_domande(tipo_richiesta)
+        domande_suggerite = suggerisci_domande(tipo_richiesta)
         
-        # Crea un menu a tendina per scegliere il suggerimento
-        domanda_scelta = st.selectbox("💡 Scegli una domanda suggerita:", domande_suggerite)
+        # Mostra i suggerimenti con pulsanti per copiare
+        st.write("💡 Suggerimenti di domande:")
+        for domanda in domande_suggerite:
+            if st.button(f"Copia: {domanda}"):
+                st.session_state['domanda'] = domanda  # Imposta la domanda selezionata
+                st.success(f"Domanda copiata: {domanda}")
 
-        # Se una domanda suggerita è stata selezionata, aggiorna il campo di input
-        if domanda_scelta != "Seleziona un suggerimento":
-            st.session_state['domanda'] = domanda_scelta
-
-        # Mostra il campo di input per la domanda, precompilato se una domanda è stata scelta
-        domanda = st.text_input("Fai una domanda:", value=st.session_state['domanda'])  # Precompila il campo se c'è una domanda nel session state
+        # Mostra il campo di input per la domanda
+        domanda = st.text_input("Fai una domanda:", value=st.session_state['domanda'])  # Mantieni il campo vuoto per l'input dell'utente
 
         # Colonne per i pulsanti "Chiedi alla Magic Ball" e "Cancella"
         col1, col2 = st.columns([2, 1])  # La prima colonna sarà più larga
@@ -119,8 +119,6 @@ def avvia_gioco():
         with col2:
             if st.button("Cancella"):
                 st.session_state['domanda'] = ''  # Resetta il campo di input
-    
-        
 
         if st.button("Chiudi il gioco"):
             termina_gioco()

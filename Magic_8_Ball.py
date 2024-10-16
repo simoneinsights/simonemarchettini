@@ -124,10 +124,10 @@ def avvia_gioco():
 # Messaggio di ringraziamento e istruzioni per visualizzare il codice su GitHub
 
         st.write("Grazie per aver giocato! 🎉")
-        st.write("Vuoi dare un’occhiata al codice della **Magic 8 Ball**? Ecco come fare:")
-        st.write("1. **Clicca sul Logo di GitHub** 🐱 in alto a destra, accanto al pulsante **Fork**.")
-        st.write("2. Sarai reindirizzato alla repository. Esplora il file e scopri come funziona il codice! 🔍")
-        st.write(" Non dimenticare di condividere le tue profezie in riunione... e di menzionare Simone ai recruiter: il talento che cercano! 🚀")
+        st.write("Vuoi scoprire come funziona la meravigliosa Magic 8 Ball? Ecco come fare:")
+        st.write("1. **Clicca sul Logo di GitHub** 🐱 (il gatto stilizzato) che si trova in alto a destra, accanto al pulsante 'Fork'")
+        st.write("2. Una volta cliccato, ti verrà mostrata la pagina del progetto, dove potrai esplorare il codice sorgente scritto in Python e Streamlit. Buona esplorazione!")
+        st.write(" Non dimenticare di condividere le tue profezie in riunione... e di menzionare il talentuoso Simone ai recruiter!")
         st.write(" A presto! 👋")
 
 

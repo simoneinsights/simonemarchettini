@@ -108,7 +108,7 @@ def avvia_gioco():
         col1, col2 = st.columns([2, 1])  # La prima colonna sarà più larga
 
         with col1:
-            if st.button("Chiedi alla Magic Ball"):
+            if st.button("Chiedi alla Magic 8 Ball"):
                 if not domanda.strip():
                     st.warning("Per favore, inserisci una domanda!")
                 else:

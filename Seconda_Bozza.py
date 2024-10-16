@@ -7,6 +7,8 @@ if 'gioco_attivo' not in st.session_state:
     st.session_state['gioco_attivo'] = True  # Inizializza il gioco come attivo
 if 'introduzione' not in st.session_state:
     st.session_state['introduzione'] = False  # Verifica se l'introduzione è stata eseguita
+if 'domanda' not in st.session_state:
+    st.session_state['domanda'] = ''  # Inizializza il campo della domanda
 
 # Funzione per mostrare l'introduzione
 def introduzione_gioco():
@@ -71,13 +73,12 @@ def termina_gioco():
 
 # Funzione principale dell'applicazione
 def avvia_gioco():
-    st.markdown("<h1 style='text-align: center;'>✨ Magic 8 Ball ✨</h1>", unsafe_allow_html=True)
+    st.markdown("<div style='text-align: center; font-size: 40px; font-weight: bold;'>✨ Magic 8 Ball ✨</div>", unsafe_allow_html=True)
 
     st.write("")  # Quattro righe vuote
     st.write("") 
     st.write("")  
     st.write("")  
-
 
     if st.session_state['gioco_attivo']:
         if not st.session_state['introduzione']:
@@ -92,10 +93,13 @@ def avvia_gioco():
             tipo_richiesta = "futuro" if "Futuro" in scelta else "simone"
             st.write("💡 Esempi di domande:")
             for esempio_domanda in suggerisci_domande(tipo_richiesta):
-                st.write(f"- {esempio_domanda}")
+                if st.button(esempio_domanda):  # Crea un pulsante per ogni esempio di domanda
+                    st.session_state['domanda'] = esempio_domanda  # Salva la domanda nel session state
+                    st.experimental_rerun()  # Ricarica la pagina per aggiornare l'input
+
+        domanda = st.text_input("Fai una domanda sul futuro:", value=st.session_state['domanda'])  # Precompila il campo se c'è una domanda nel session state
 
         if "Futuro" in scelta:
-            domanda = st.text_input("Fai una domanda sul futuro:")
             if st.button("Chiedi alla Magic Ball"):
                 if not domanda.strip():
                     st.warning("Per favore, inserisci una domanda!")
@@ -105,7 +109,6 @@ def avvia_gioco():
                     st.success(f"🎱 La Magic 8 Ball dice: {risposta}")
         
         elif "Simone" in scelta:
-            domanda = st.text_input("Fai una domanda sulle capacità segrete di Simone:")
             if st.button("Chiedi alla Magic Ball"):
                 if not domanda.strip():
                     st.warning("Per favore, inserisci una domanda!")
@@ -119,8 +122,12 @@ def avvia_gioco():
             st.rerun()
 
     else:
+        # Messaggio di ringraziamento e istruzioni per visualizzare il codice su GitHub
         st.write("Grazie per aver giocato! 🎉")
-        st.write("Condividi le tue profezie... e parla di Simone ai recruiter! 🚀")
+        st.write("Vuoi scoprire come funziona la meravigliosa Magic 8 Ball? 🎱 Ecco come fare:")
+        st.write("1. **Clicca sul Logo di GitHub** 🐱 (il gatto stilizzato) che si trova in alto a destra, accanto al pulsante 'Fork'")
+        st.write("2. Una volta cliccato, si aprirà la pagina del progetto, dove potrai esplorare il codice sorgente scritto in Python e Streamlit. Buona esplorazione! 🔍")
+        st.write("Non dimenticare di condividere le tue profezie in riunione... e di menzionare il talentuoso Simone ai recruiter! 🚀")
         st.write("A presto! 👋")
 
 # Esegue la funzione principale

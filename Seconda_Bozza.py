@@ -23,7 +23,7 @@ def mostra_messaggi_con_ritardo():
 # Liste di risposte
 risposte_futuro = [
     "Sì, sicuramente.",
-    "Non so, chiedi di nuovo.",
+    "Non saprei, prova a rifare la domanda.",
     "Sembra improbabile.",
     "Forse.",
     "Probabilmente no.",
@@ -32,7 +32,8 @@ risposte_futuro = [
 ]
 
 risposte_simone = [
-    "Non ne sono sicuro, prova a rifare la domanda.",
+
+    "Mmm... chiedi di nuovo!",
     "Non molto!",
     "Abbastanza!",
     "Sì, decisamente!",
@@ -46,8 +47,8 @@ def suggerisci_domanda(tipo):
         return [
             "L'intelligenza artificiale trasformerà il mio settore?",
             "La mia azienda avrà successo l'anno prossimo?",
-            "Verrò licenziato quest'anno?",
-            "Il prossimo progetto avrà un impatto positivo sulla mia carriera?"
+            "Il prossimo progetto avrà un impatto positivo sulla mia carriera?",
+            "Mi licenzieranno quest'anno?",
         ]
     elif tipo == "simone":
         return [

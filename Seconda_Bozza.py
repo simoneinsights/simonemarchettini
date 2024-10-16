@@ -73,7 +73,11 @@ def termina_gioco():
 def avvia_gioco():
     st.markdown("<h1 style='text-align: center;'>✨ Magic 8 Ball ✨</h1>", unsafe_allow_html=True)
 
-    st.write("\n" * 4)  # Spazio vuoto per la formattazione
+    st.write("")  # Quattro righe vuote
+    st.write("") 
+    st.write("")  
+    st.write("")  
+
 
     if st.session_state['gioco_attivo']:
         if not st.session_state['introduzione']:

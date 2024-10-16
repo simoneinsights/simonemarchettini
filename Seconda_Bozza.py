@@ -89,6 +89,7 @@ def avvia_gioco():
                           ("🔮 Futuro: Scopri cosa ti attende oltre l'orizzonte!", 
                            "🤹‍♂️ Simone: Esplora il mondo affascinante delle sue abilità nascoste!"))
 
+        # Crea una lista per le domande suggerite
         if st.button("Mostra suggerimenti"):
             tipo_richiesta = "futuro" if "Futuro" in scelta else "simone"
             st.write("💡 Esempi di domande:")

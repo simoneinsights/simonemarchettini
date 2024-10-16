@@ -2,137 +2,132 @@ import streamlit as st
 import time
 import random
 
-# Inizializza lo stato della sessione
+# Inizializza lo stato della sessione solo una volta
 if 'gioco_attivo' not in st.session_state:
-    st.session_state['gioco_attivo'] = True  # Indica se il gioco è attivo
+    st.session_state['gioco_attivo'] = True  # Inizializza il gioco come attivo
 if 'mostra_messaggi' not in st.session_state:
-    st.session_state['mostra_messaggi'] = False  # Controlla se i messaggi iniziali sono già stati mostrati
+    st.session_state['mostra_messaggi'] = False  # Verifica se i messaggi iniziali sono stati mostrati
 
-# Funzione per mostrare i messaggi con ritardo
+# Funzione per mostrare messaggi con ritardo
 def mostra_messaggi_con_ritardo():
-    messaggio = st.empty()
-    time.sleep(1)
-    messaggio.write("Benvenuto nella Magic Ball!")
+    messaggio = st.empty()  # Crea un contenitore vuoto
+    time.sleep(1)  # Pausa di 1 secondo
+    messaggio.write("🎱 Benvenuto nella Magic 8 Ball!")  # Primo messaggio
     time.sleep(3)
-    messaggio.write("Vuoi scoprire cosa il destino ha in serbo per te? Fai una domanda sul futuro!")
+    messaggio.write("🎱 Vuoi scoprire cosa il destino ha in serbo per te? Fai una domanda sul futuro!")  # Secondo messaggio
     time.sleep(5)
-    messaggio.write("Vorresti conoscere meglio Simone e le sue capacità lavorative? Fai una domanda su di lui!")
+    messaggio.write("🎱 Desideri conoscere le straordinarie doti di Simone? Fai una domanda e svela i suoi talenti segreti!")  # Terzo messaggio
     time.sleep(5)
-    messaggio.empty()
+    messaggio.empty()  # Svuota il contenitore dopo aver mostrato i messaggi
 
 # Liste di risposte
 risposte_futuro = [
-    "Sì, sicuramente. 🚀",
-    "Non so, chiedi di nuovo. 🤔",
-    "Sembra improbabile. ❌",
-    "Sì. 🎉",
-    "Non contare su di esso. 😬",
-    "È certo. 🌟",
-    "Le prospettive non sono buone. 😕",
-    "Sì, in effetti. 💯",
-    "Non è il momento giusto. ⏳",
-    "Certo, perché no? 👍"
+    "Sì, sicuramente.",
+    "Non so, chiedi di nuovo.",
+    "Sembra improbabile.",
+    "Forse.",
+    "Probabilmente no.",
+    "È certo.",
+    "È impossibile.",
 ]
 
 risposte_simone = [
-    "Non molto, ma ha un grande potenziale! 🤔",
-    "Abbastanza, ma c'è spazio per crescere! 📈",
-    "Sì, decisamente! 👍",
-    "Molto, è un valore aggiunto! 🌟",
-    "Assolutamente, non ti deluderà! 🚀"
+    "Non ne sono sicuro, prova a rifare la domanda.",
+    "Non molto!",
+    "Abbastanza!",
+    "Sì, decisamente!",
+    "Molto!",
+    "Assolutamente no!"
 ]
 
-# Funzione per suggerire domande
+# Funzione per suggerire domande a seconda del tipo
 def suggerisci_domanda(tipo):
     if tipo == "futuro":
         return [
-            "Come sarà il futuro della mia azienda?",
-            "L'intelligenza artificiale cambierà il mio settore?",
-            "Ci sarà una promozione per me quest'anno?",
+            "L'intelligenza artificiale trasformerà il mio settore?",
             "La mia azienda avrà successo l'anno prossimo?",
-            "Il prossimo progetto avrà un impatto positivo?"
+            "Verrò licenziato quest'anno?",
+            "Il prossimo progetto avrà un impatto positivo sulla mia carriera?"
         ]
     elif tipo == "simone":
         return [
-            "Simone è un buon lavoratore?",
-            "Simone è affidabile in team?",
-            "Simone è pronto per nuove sfide?",
-            "Simone è un candidato ideale per la mia azienda?",
-            "Simone si integra bene con il gruppo?"
+            "Simone è abile a tenere un discorso senza fare riferimento alla sua serie TV preferita?",
+            "Simone è in grado di scrivere domande divertenti senza l'aiuto di ChatGPT?",
+            "Simone riesce a non perdere le staffe quando il Wi-Fi va in panne?",
+            "Simone è capace di fare brainstorming mentre balla il tango?"
         ]
 
 # Funzione per creare suspense
 def crea_suspense():
-    with st.spinner("🎱 La Magic Ball sta pensando..."):  # Mostra il messaggio di suspense
-        progress_bar = st.progress(0)  # Crea una progress bar al 0%
+    with st.spinner("🎱 La Magic 8 Ball sta pensando..."):  # Mostra il messaggio di attesa
+        progress_bar = st.progress(0)  # Inizializza la barra di progresso
         for percent_complete in range(101):
-            time.sleep(0.04)  # 0.04 secondi per ogni incremento (100 incrementi totali = 4 secondi)
-            progress_bar.progress(percent_complete)  # Aggiorna la barra con il valore attuale
+            time.sleep(0.03)  # Pausa di 0.03 secondi per ogni incremento (circa 3 secondi totali)
+            progress_bar.progress(percent_complete)  # Aggiorna la barra
 
 # Funzione per chiudere il gioco
 def chiudi_gioco():
     st.session_state['gioco_attivo'] = False  # Imposta il gioco come chiuso
 
-# Funzione principale
+# Funzione principale dell'applicazione
 def main():
-    # Titolo dell'app
-    st.markdown("<h1 style='text-align: center;'>✨ Magic Ball. Seconda Bozza ✨</h1>", unsafe_allow_html=True)
+    # Titolo dell'app con HTML per la formattazione
+    st.markdown("<h1 style='text-align: center;'>✨ Magic 8 Ball ✨</h1>", unsafe_allow_html=True)
 
-
-    st.write("")  # Prima riga vuota
-    st.write("")  # Seconda riga vuota
-    st.write("")  # Prima riga vuota
-    st.write("")  # Seconda riga vuota
+    # Spazio vuoto per la formattazione
+    st.write("\n" * 4)
 
     # Controlla se il gioco è attivo
     if st.session_state['gioco_attivo']:
         # Mostra i messaggi iniziali solo una volta
         if not st.session_state['mostra_messaggi']:
             mostra_messaggi_con_ritardo()
-            st.session_state['mostra_messaggi'] = True
+            st.session_state['mostra_messaggi'] = True  # Impedisce che i messaggi siano mostrati di nuovo
 
-        # Spazio per scegliere cosa chiedere
-        scelta = st.radio("Scegli cosa chiedere:", ("Futuro", "Simone"))
+        # Opzioni di scelta per l'utente
+        scelta = st.radio("🛣️ Scegli la tua strada:", 
+                          ("🔮 Futuro: Scopri cosa ti attende oltre l'orizzonte!", 
+                           "🤹‍♂️ Simone: Esplora il mondo affascinante delle sue abilità nascoste!"))
 
+        # Mostra suggerimenti di domande se l'utente lo desidera
         if st.button("Mostra i suggerimenti"):
-            if scelta == "Futuro":
-                st.write("💡 Esempi di domande:")
-                for esempio in suggerisci_domanda("futuro"):
-                    st.write(f"- {esempio}")
-            elif scelta == "Simone":
-                st.write("💡 Esempi di domande:")
-                for esempio in suggerisci_domanda("simone"):
-                    st.write(f"- {esempio}")
+            tipo_domanda = "futuro" if "Futuro" in scelta else "simone"  # Determina il tipo di domanda basato sulla scelta
+            st.write("💡 Esempi di domande:")
+            for esempio in suggerisci_domanda(tipo_domanda):
+                st.write(f"- {esempio}")
 
-        # Gestione delle domande
-        if scelta == "Futuro":
+        # Sezione per gestire le domande
+        if "Futuro" in scelta:
             domanda = st.text_input("Fai una domanda sul futuro:")
             if st.button("Chiedi alla Magic Ball"):
-                if domanda.strip() == "":
+                if not domanda.strip():
                     st.warning("Per favore, inserisci una domanda!")
                 else:
                     crea_suspense()
-                    risposta = random.choice(risposte_futuro)
-                    st.success(f"🎉 La Magic Ball dice: {risposta}")
+                    risposta = random.choice(risposte_futuro)  # Sceglie una risposta casuale per il futuro
+                    st.success(f"🎱 La Magic 8 Ball dice: {risposta}")
         
-        elif scelta == "Simone":
-            domanda = st.text_input("Fai una domanda su Simone:")
+        elif "Simone" in scelta:
+            domanda = st.text_input("Fai una domanda sulle capacità segrete di Simone:")
             if st.button("Chiedi alla Magic Ball"):
-                if domanda.strip() == "":
+                if not domanda.strip():
                     st.warning("Per favore, inserisci una domanda!")
                 else:
                     crea_suspense()
-                    risposta = random.choice(risposte_simone)
-                    st.success(f"🎉 La Magic Ball dice: {risposta}")
+                    risposta = random.choice(risposte_simone)  # Sceglie una risposta casuale per Simone
+                    st.success(f"🎱 La Magic 8 Ball dice: {risposta}")
 
         # Bottone per chiudere il gioco
         if st.button("Chiudi il gioco"):
-            chiudi_gioco()  # Imposta lo stato del gioco come chiuso
-            st.rerun()  # Ricarica l'app per riflettere il cambiamento di stato
+            chiudi_gioco()  # Chiude il gioco
+            st.rerun()  # Ricarica l'app per riflettere il nuovo stato
 
     else:
-        # Se il gioco è chiuso, mostra solo il messaggio di ringraziamento
-        st.write("Grazie per aver giocato! 🎉")
+        # Se il gioco è chiuso, mostra i messaggi di ringraziamento
+        st.write(" Grazie per aver giocato! 🎉 ")
+        st.write(" Non dimenticare di condividere le tue profezie in riunione... e di menzionare Simone ai recruiter: il talento che cercano! 🚀")
+        st.write(" A presto! 👋")
 
+# Esegue la funzione principale
 if __name__ == "__main__":
     main()

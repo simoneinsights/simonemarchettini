@@ -103,23 +103,21 @@ def avvia_gioco():
         # Mostra il campo di input per la domanda, precompilato se una domanda è stata scelta
         domanda = st.text_input("Fai una domanda:", value=st.session_state['domanda'])  # Precompila il campo se c'è una domanda nel session state
 
-        if "Futuro" in scelta:
+        # Colonne per i pulsanti "Chiedi alla Magic Ball" e "Cancella"
+        col1, col2 = st.columns([2, 1])  # La prima colonna sarà più larga
+
+        with col1:
             if st.button("Chiedi alla Magic Ball"):
                 if not domanda.strip():
                     st.warning("Per favore, inserisci una domanda!")
                 else:
                     crea_suspense()
-                    risposta = random.choice(risposte_futuro)
+                    risposta = random.choice(risposte_futuro if "Futuro" in scelta else risposte_simone)
                     st.success(f"🎱 La Magic 8 Ball dice: {risposta}")
-        
-        elif "Simone" in scelta:
-            if st.button("Chiedi alla Magic Ball"):
-                if not domanda.strip():
-                    st.warning("Per favore, inserisci una domanda!")
-                else:
-                    crea_suspense()
-                    risposta = random.choice(risposte_simone)
-                    st.success(f"🎱 La Magic 8 Ball dice: {risposta}")
+
+        with col2:
+            if st.button("Cancella"):
+                st.session_state['domanda'] = ''  # Resetta il campo di input
 
         if st.button("Chiudi il gioco"):
             termina_gioco()

@@ -96,7 +96,6 @@ def avvia_gioco():
             for esempio_domanda in suggerisci_domande(tipo_richiesta):
                 if st.button(esempio_domanda):  # Crea un pulsante per ogni esempio di domanda
                     st.session_state['domanda'] = esempio_domanda  # Salva la domanda nel session state
-                    st.rerun()  # Ricarica la pagina per aggiornare l'input
 
         # Mostra il campo di input per la domanda
         domanda = st.text_input("Fai una domanda:", value=st.session_state['domanda'])  # Precompila il campo se c'è una domanda nel session state
@@ -121,7 +120,6 @@ def avvia_gioco():
 
         if st.button("Chiudi il gioco"):
             termina_gioco()
-            st.rerun()
 
     else:
         # Messaggio di ringraziamento e istruzioni per visualizzare il codice su GitHub

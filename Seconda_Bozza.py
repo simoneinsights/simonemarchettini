@@ -4,42 +4,32 @@ import random
 
 # Inizializza lo stato della sessione solo una volta
 if 'gioco_attivo' not in st.session_state:
-    st.session_state['gioco_attivo'] = True  # Inizializza il gioco come attivo
+    st.session_state['gioco_attivo'] = True
 if 'introduzione' not in st.session_state:
-    st.session_state['introduzione'] = False  # Verifica se l'introduzione è stata eseguita
+    st.session_state['introduzione'] = False
 if 'domanda' not in st.session_state:
     st.session_state['domanda'] = ''  # Inizializza il campo della domanda
 
 # Funzione per mostrare l'introduzione
 def introduzione_gioco():
-    contenitore_messaggio = st.empty()  # Crea un contenitore vuoto
-    time.sleep(1)  # Pausa di 1 secondo
-    contenitore_messaggio.write("🎱 Benvenuto nella Magic 8 Ball!")  # Primo messaggio
+    contenitore_messaggio = st.empty()
+    time.sleep(1)
+    contenitore_messaggio.write("🎱 Benvenuto nella Magic 8 Ball!")
     time.sleep(3)
-    contenitore_messaggio.write("🎱 Desideri conoscere cosa il destino ha in serbo per te? Fai una domanda sul futuro!")  # Secondo messaggio
+    contenitore_messaggio.write("🎱 Desideri conoscere cosa il destino ha in serbo per te? Fai una domanda sul futuro!")
     time.sleep(5)
-    contenitore_messaggio.write("🎱 Vuoi scoprire le straordinarie doti di Simone? Fai una domanda e svela i suoi talenti segreti!")  # Terzo messaggio
+    contenitore_messaggio.write("🎱 Vuoi scoprire le straordinarie doti di Simone? Fai una domanda e svela i suoi talenti segreti!")
     time.sleep(5)
-    contenitore_messaggio.empty()  # Svuota il contenitore dopo aver mostrato i messaggi
+    contenitore_messaggio.empty()
 
 # Liste di risposte per il futuro e per Simone
 risposte_futuro = [
-    "Sì, sicuramente.",
-    "Non saprei, prova a rifare la domanda.",
-    "Sembra improbabile.",
-    "Forse.",
-    "Probabilmente no.",
-    "È certo.",
-    "È impossibile.",
+    "Sì, sicuramente.", "Non saprei, prova a rifare la domanda.", "Sembra improbabile.",
+    "Forse.", "Probabilmente no.", "È certo.", "È impossibile.",
 ]
 
 risposte_simone = [
-    "Mmm... chiedi di nuovo!",
-    "Non molto!",
-    "Abbastanza!",
-    "Sì, decisamente!",
-    "Molto!",
-    "Assolutamente no!"
+    "Mmm... chiedi di nuovo!", "Non molto!", "Abbastanza!", "Sì, decisamente!", "Molto!", "Assolutamente no!"
 ]
 
 # Funzione per suggerire domande in base al tipo scelto
@@ -61,26 +51,21 @@ def suggerisci_domande(tipo_richiesta):
 
 # Funzione per creare suspense
 def crea_suspense():
-    with st.spinner("🎱 La Magic 8 Ball sta pensando..."):  # Mostra il messaggio di attesa
-        barra_progresso = st.progress(0)  # Inizializza la barra di progresso
+    with st.spinner("🎱 La Magic 8 Ball sta pensando..."):
+        barra_progresso = st.progress(0)
         for completamento in range(101):
-            time.sleep(0.03)  # Pausa di 0.03 secondi per ogni incremento
+            time.sleep(0.03)
             barra_progresso.progress(completamento)
 
 # Funzione per chiudere il gioco
 def termina_gioco():
-    st.session_state['gioco_attivo'] = False  # Imposta il gioco come chiuso
-    st.rerun()  # Forza il ricaricamento immediato
+    st.session_state['gioco_attivo'] = False
+    st.rerun()
 
 # Funzione principale dell'applicazione
 def avvia_gioco():
     st.markdown("<div style='text-align: center; font-size: 40px; font-weight: bold;'>✨ Magic 8 Ball ✨</div>", unsafe_allow_html=True)
-
-    st.write("")  # Quattro righe vuote
-    st.write("") 
-    st.write("")  
-    st.write("")  
-
+    
     if st.session_state['gioco_attivo']:
         if not st.session_state['introduzione']:
             introduzione_gioco()
@@ -90,22 +75,20 @@ def avvia_gioco():
                           ("🔮 Futuro: Scopri cosa ti attende oltre l'orizzonte!", 
                            "🤹‍♂️ Simone: Esplora il mondo affascinante delle sue abilità nascoste!"))
 
-        # Crea una lista per le domande suggerite
         tipo_richiesta = "futuro" if "Futuro" in scelta else "simone"
         domande_suggerite = ["Seleziona un suggerimento"] + suggerisci_domande(tipo_richiesta)
-        
-        # Crea un menu a tendina per scegliere il suggerimento
+
+        # Dropdown di suggerimenti
         domanda_scelta = st.selectbox("💡 Scegli una domanda suggerita:", domande_suggerite)
 
-        # Se una domanda suggerita è stata selezionata, aggiorna il campo di input
-        if domanda_scelta != "Seleziona un suggerimento":
-            st.session_state['domanda'] = domanda_scelta
+        # Resetta il campo della domanda sia se il suggerimento è selezionato sia se non lo è
+        st.session_state['domanda'] = domanda_scelta if domanda_scelta != "Seleziona un suggerimento" else ""
 
-        # Mostra il campo di input per la domanda, precompilato se una domanda è stata scelta
-        domanda = st.text_input("Fai una domanda:", value=st.session_state['domanda'])  # Precompila il campo se c'è una domanda nel session state
+        # Campo input per la domanda, sempre vuoto dopo il reset
+        domanda = st.text_input("Fai una domanda:", value=st.session_state['domanda'])
 
-        # Colonne per i pulsanti "Chiedi alla Magic Ball" e "Cancella"
-        col1, col2 = st.columns([2, 1])  # La prima colonna sarà più larga
+        # Colonne per i pulsanti
+        col1, col2 = st.columns([2, 1])
 
         with col1:
             if st.button("Chiedi alla Magic Ball"):
@@ -118,19 +101,14 @@ def avvia_gioco():
 
         with col2:
             if st.button("Cancella"):
-                st.session_state['domanda'] = ''  # Resetta il campo di input
-                st.rerun()  # Forza il ricaricamento immediato
+                st.session_state['domanda'] = ''  # Resetta sempre
+                st.rerun()
 
         if st.button("Chiudi il gioco"):
             termina_gioco()
 
     else:
-        # Messaggio di ringraziamento e istruzioni per visualizzare il codice su GitHub
         st.write("Grazie per aver giocato! 🎉")
-        st.write("Vuoi scoprire come funziona la meravigliosa Magic 8 Ball? 🎱 Ecco come fare:")
-        st.write("1. **Clicca sul Logo di GitHub** 🐱 (il gatto stilizzato) che si trova in alto a destra, accanto al pulsante 'Fork'")
-        st.write("2. Una volta cliccato, si aprirà la pagina del progetto, dove potrai esplorare il codice sorgente scritto in Python e Streamlit. Buona esplorazione! 🔍")
-        st.write("Non dimenticare di condividere le tue profezie in riunione... e di menzionare il talentuoso Simone ai recruiter! 🚀")
         st.write("A presto! 👋")
 
 # Esegue la funzione principale

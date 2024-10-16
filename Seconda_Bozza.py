@@ -90,14 +90,17 @@ def avvia_gioco():
                            "🤹‍♂️ Simone: Esplora il mondo affascinante delle sue abilità nascoste!"))
 
         # Crea una lista per le domande suggerite
-        if st.button("Mostra suggerimenti"):
-            tipo_richiesta = "futuro" if "Futuro" in scelta else "simone"
-            st.write("💡 Esempi di domande:")
-            for esempio_domanda in suggerisci_domande(tipo_richiesta):
-                if st.button(esempio_domanda):  # Crea un pulsante per ogni esempio di domanda
-                    st.session_state['domanda'] = esempio_domanda  # Salva la domanda nel session state
+        tipo_richiesta = "futuro" if "Futuro" in scelta else "simone"
+        domande_suggerite = suggerisci_domande(tipo_richiesta)
+        
+        # Crea un menu a tendina per scegliere il suggerimento
+        domanda_scelta = st.selectbox("💡 Scegli una domanda suggerita:", [""] + domande_suggerite)
 
-        # Mostra il campo di input per la domanda
+        # Se una domanda suggerita è stata selezionata, aggiorna il campo di input
+        if domanda_scelta:
+            st.session_state['domanda'] = domanda_scelta
+
+        # Mostra il campo di input per la domanda, precompilato se una domanda è stata scelta
         domanda = st.text_input("Fai una domanda:", value=st.session_state['domanda'])  # Precompila il campo se c'è una domanda nel session state
 
         if "Futuro" in scelta:

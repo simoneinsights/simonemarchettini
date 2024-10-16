@@ -91,13 +91,13 @@ def avvia_gioco():
 
         # Crea una lista per le domande suggerite
         tipo_richiesta = "futuro" if "Futuro" in scelta else "simone"
-        domande_suggerite = suggerisci_domande(tipo_richiesta)
+        domande_suggerite = ["Seleziona un suggerimento"] + suggerisci_domande(tipo_richiesta)
         
         # Crea un menu a tendina per scegliere il suggerimento
         domanda_scelta = st.selectbox("💡 Scegli una domanda suggerita:", domande_suggerite)
 
         # Se una domanda suggerita è stata selezionata, aggiorna il campo di input
-        if domanda_scelta:
+        if domanda_scelta != "Seleziona un suggerimento":
             st.session_state['domanda'] = domanda_scelta
 
         # Mostra il campo di input per la domanda, precompilato se una domanda è stata scelta

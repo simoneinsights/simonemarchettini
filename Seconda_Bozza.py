@@ -14,9 +14,9 @@ def introduzione_gioco():
     time.sleep(1)  # Pausa di 1 secondo
     contenitore_messaggio.write("🎱 Benvenuto nella Magic 8 Ball!")  # Primo messaggio
     time.sleep(3)
-    contenitore_messaggio.write("🎱 Vuoi scoprire cosa il destino ha in serbo per te? Fai una domanda sul futuro!")  # Secondo messaggio
+    contenitore_messaggio.write("🎱 Desideri conoscere cosa il destino ha in serbo per te? Fai una domanda sul futuro!")  # Secondo messaggio
     time.sleep(5)
-    contenitore_messaggio.write("🎱 Desideri conoscere le straordinarie doti di Simone? Fai una domanda e svela i suoi talenti segreti!")  # Terzo messaggio
+    contenitore_messaggio.write("🎱 Vuoi scoprire le straordinarie doti di Simone? Fai una domanda e svela i suoi talenti segreti!")  # Terzo messaggio
     time.sleep(5)
     contenitore_messaggio.empty()  # Svuota il contenitore dopo aver mostrato i messaggi
 

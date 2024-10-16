@@ -5,11 +5,11 @@ import random
 # Inizializza lo stato della sessione solo una volta
 if 'gioco_attivo' not in st.session_state:
     st.session_state['gioco_attivo'] = True  # Inizializza il gioco come attivo
-if 'mostra_messaggi_iniziali' not in st.session_state:
-    st.session_state['mostra_messaggi_iniziali'] = False  # Verifica se i messaggi iniziali sono stati mostrati
+if 'introduzione' not in st.session_state:
+    st.session_state['introduzione'] = False  # Verifica se l'introduzione è stata eseguita
 
-# Funzione per mostrare i messaggi iniziali con un ritardo
-def mostra_messaggi_iniziali_con_ritardo():
+# Funzione per mostrare l'introduzione
+def introduzione_gioco():
     contenitore_messaggio = st.empty()  # Crea un contenitore vuoto
     time.sleep(1)  # Pausa di 1 secondo
     contenitore_messaggio.write("🎱 Benvenuto nella Magic 8 Ball!")  # Primo messaggio
@@ -77,8 +77,8 @@ def avvia_gioco():
 
     if st.session_state['gioco_attivo']:
         if not st.session_state['mostra_messaggi_iniziali']:
-            mostra_messaggi_iniziali_con_ritardo()
-            st.session_state['mostra_messaggi_iniziali'] = True
+            introduzione_gioco()
+            st.session_state['introduzione'] = True
 
         scelta = st.radio("🛣️ Scegli la tua strada:", 
                           ("🔮 Futuro: Scopri cosa ti attende oltre l'orizzonte!", 

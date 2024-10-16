@@ -81,10 +81,10 @@ def avvia_gioco():
         # Dropdown di suggerimenti
         domanda_scelta = st.selectbox("💡 Scegli una domanda suggerita:", domande_suggerite)
 
-        # Resetta il campo della domanda sia se il suggerimento è selezionato sia se non lo è
-        st.session_state['domanda'] = domanda_scelta if domanda_scelta != "Seleziona un suggerimento" else ""
+        # Non importa cosa venga selezionato, l'input è indipendente da suggerimenti
+        st.session_state['domanda'] = domanda_scelta if domanda_scelta != "Seleziona un suggerimento" else st.session_state['domanda']
 
-        # Campo input per la domanda, sempre vuoto dopo il reset
+        # Campo input per la domanda
         domanda = st.text_input("Fai una domanda:", value=st.session_state['domanda'])
 
         # Colonne per i pulsanti
@@ -101,7 +101,7 @@ def avvia_gioco():
 
         with col2:
             if st.button("Cancella"):
-                st.session_state['domanda'] = ''  # Resetta sempre
+                st.session_state['domanda'] = ''  # Cancella sempre il campo
                 st.rerun()
 
         if st.button("Chiudi il gioco"):

@@ -71,7 +71,8 @@ def termina_gioco():
 
 # Funzione principale dell'applicazione
 def avvia_gioco():
-    st.title("✨ Magic 8 Ball ✨")
+    st.markdown("<div style='text-align: center; font-size: 40px;'>✨ Magic 8 Ball ✨</div>", unsafe_allow_html=True)
+
 
 
     st.write("")  # Quattro righe vuote

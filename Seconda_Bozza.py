@@ -119,7 +119,6 @@ def avvia_gioco():
         with col2:
             if st.button("Cancella"):
                 st.session_state['domanda'] = ''  # Resetta il campo di input
-                st.session_state['introduzione'] = False  # Resetta l'introduzione per la prossima volta
                 st.rerun()  # Forza il ricaricamento immediato
 
         if st.button("Chiudi il gioco"):

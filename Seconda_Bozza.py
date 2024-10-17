@@ -20,9 +20,9 @@ def introduzione_gioco():
         contenitore_messaggio.write("🎱 Benvenuto nella Magic 8 Ball!")
         time.sleep(3)
         contenitore_messaggio.write("🎱 Desideri conoscere cosa il destino ha in serbo per te? Fai una domanda sul futuro!")
-        time.sleep(5)
+        time.sleep(6)
         contenitore_messaggio.write("🎱 Vuoi scoprire le straordinarie doti di Simone? Fai una domanda e svela i suoi talenti segreti!")
-        time.sleep(5)
+        time.sleep(6)
         contenitore_messaggio.empty()
 
 # Liste di risposte per il futuro e per Simone

@@ -94,10 +94,10 @@ def suggerisci_domande(tipo_richiesta):
         ]
     elif tipo_richiesta == "simone":
         return [
-            "Simone è capace di rispettare una scadenza senza impostare promemoria anche sul forno a microonde?",
-            "Simone riesce a non perdere le staffe quando il Wi-Fi va in panne?",
+            "Simone riesce a rispettare una scadenza senza impostare promemoria anche sul microonde?",
+            "Simone è in grado di non perdere le staffe quando il Wi-Fi va in panne?",
             "Simone è abile a scrivere domande divertenti senza l'aiuto di ChatGPT?",
-            "Simone è capace di inviare un'email scrivendo 'in allegato la presentazione' senza dimenticarsi l'allegato?"
+            "Simone è capace di inviare un'email senza dimenticarsi l'allegato?"
         ]
 # Funzione per creare suspense
 def crea_suspense():

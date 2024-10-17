@@ -15,7 +15,7 @@ if 'reset_key' not in st.session_state:
 # Funzione per mostrare l'introduzione
 def introduzione_gioco():
     contenitore_messaggio = st.empty()
-    with st.spinner("Caricamento..."):
+    with st.spinner():
         time.sleep(1)
         contenitore_messaggio.write("🎱 Benvenuto nella Magic 8 Ball!")
         time.sleep(3)

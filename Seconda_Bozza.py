@@ -100,12 +100,11 @@ def avvia_gioco():
                     st.session_state['domanda'] = esempio_domanda
 
         # Mostra il campo di input per la domanda
-        domanda = st.text_input("Fai una domanda:", value=st.session_state['domanda'])  # Precompila il campo se c'è una domanda nel session state
+        domanda = st.text_input("Fai una domanda:", value=st.session_state['domanda'])  # Precompila il campo se c'è una domanda nel sessione
 
         # Aggiungi il pulsante "Cancella" per svuotare il campo di testo
         if st.button("Cancella"):
             st.session_state['domanda'] = ''  # Svuota il campo di testo
-            st.rerun()  # Aggiorna l'interfaccia
 
         if "Futuro" in scelta:
             if st.button("Chiedi alla Magic Ball"):
@@ -127,7 +126,6 @@ def avvia_gioco():
 
         if st.button("Chiudi il gioco"):
             termina_gioco()
-            st.rerun()
 
     else:
         # Messaggio di ringraziamento e istruzioni per visualizzare il codice su GitHub

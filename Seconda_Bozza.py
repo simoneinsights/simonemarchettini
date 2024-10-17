@@ -18,7 +18,7 @@ def introduzione_gioco():
     time.sleep(1)
     contenitore_messaggio.markdown("""
         <div style="display: flex; align-items: center;">
-            <div style="flex-shrink: 0; margin-right: 5px;">
+            <div style="flex-shrink: 0; margin-right: 10px;">
                 <div class="loading-spinner"></div>
             </div>
             <div>🎱 Benvenuto nella Magic 8 Ball!</div>
@@ -27,7 +27,7 @@ def introduzione_gioco():
     time.sleep(3)
     contenitore_messaggio.markdown("""
         <div style="display: flex; align-items: center;">
-            <div style="flex-shrink: 0; margin-right: 5px;">
+            <div style="flex-shrink: 0; margin-right: 10px;">
                 <div class="loading-spinner"></div>
             </div>
             <div>🎱 Desideri conoscere cosa il destino ha in serbo per te? Fai una domanda sul futuro!</div>
@@ -36,7 +36,7 @@ def introduzione_gioco():
     time.sleep(5)
     contenitore_messaggio.markdown("""
         <div style="display: flex; align-items: center;">
-            <div style="flex-shrink: 0; margin-right: 5px;">
+            <div style="flex-shrink: 0; margin-right: 10px;">
                 <div class="loading-spinner"></div>
             </div>
             <div>🎱 Vuoi scoprire le straordinarie doti di Simone? Fai una domanda e svela i suoi talenti segreti!</div>
@@ -50,8 +50,8 @@ st.markdown("""
 <style>
 .loading-spinner {
     border: 4px solid rgba(0, 0, 0, 0.1);
-    width: 36px;
-    height: 36px;
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
     border-left-color: #09f;
     animation: spin 1s linear infinite;

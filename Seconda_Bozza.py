@@ -1,26 +1,26 @@
-import streamlit as st 
+import streamlit as st
 import time
 import random
 
 # Inizializza lo stato della sessione solo una volta
 if 'gioco_attivo' not in st.session_state:
-    st.session_state['gioco_attivo'] = True  # Inizializza il gioco come attivo
+    st.session_state['gioco_attivo'] = True
 if 'introduzione' not in st.session_state:
-    st.session_state['introduzione'] = False  # Verifica se l'introduzione è stata eseguita
+    st.session_state['introduzione'] = False
 if 'domanda' not in st.session_state:
-    st.session_state['domanda'] = ''  # Inizializza il campo della domanda
+    st.session_state['domanda'] = ''
 
 # Funzione per mostrare l'introduzione
 def introduzione_gioco():
-    contenitore_messaggio = st.empty()  # Crea un contenitore vuoto
-    time.sleep(1)  # Pausa di 1 secondo
-    contenitore_messaggio.write("🎱 Benvenuto nella Magic 8 Ball!")  # Primo messaggio
+    contenitore_messaggio = st.empty()
+    time.sleep(1)
+    contenitore_messaggio.write("🎱 Benvenuto nella Magic 8 Ball!")
     time.sleep(3)
-    contenitore_messaggio.write("🎱 Desideri conoscere cosa il destino ha in serbo per te? Fai una domanda sul futuro!")  # Secondo messaggio
+    contenitore_messaggio.write("🎱 Desideri conoscere cosa il destino ha in serbo per te? Fai una domanda sul futuro!")
     time.sleep(5)
-    contenitore_messaggio.write("🎱 Vuoi scoprire le straordinarie doti di Simone? Fai una domanda e svela i suoi talenti segreti!")  # Terzo messaggio
+    contenitore_messaggio.write("🎱 Vuoi scoprire le straordinarie doti di Simone? Fai una domanda e svela i suoi talenti segreti!")
     time.sleep(5)
-    contenitore_messaggio.empty()  # Svuota il contenitore dopo aver mostrato i messaggi
+    contenitore_messaggio.empty()
 
 # Liste di risposte per il futuro e per Simone
 risposte_futuro = [
@@ -61,32 +61,36 @@ def suggerisci_domande(tipo_richiesta):
 
 # Funzione per creare suspense
 def crea_suspense():
-    with st.spinner("🎱 La Magic 8 Ball sta pensando..."):  # Mostra il messaggio di attesa
-        barra_progresso = st.progress(0)  # Inizializza la barra di progresso
+    with st.spinner("🎱 La Magic 8 Ball sta pensando..."):
+        barra_progresso = st.progress(0)
         for completamento in range(101):
-            time.sleep(0.03)  # Pausa di 0.03 secondi per ogni incremento
+            time.sleep(0.03)
             barra_progresso.progress(completamento)
 
 # Funzione per chiudere il gioco
 def termina_gioco():
-    st.session_state['gioco_attivo'] = False  # Imposta il gioco come chiuso
+    st.session_state['gioco_attivo'] = False
+
+# Funzione callback per gestire l'inserimento delle domande suggerite
+def inserisci_domanda(esempio_domanda):
+    st.session_state['domanda'] = esempio_domanda
 
 # Funzione principale dell'applicazione
 def avvia_gioco():
     st.markdown("<div style='text-align: center; font-size: 40px; font-weight: bold;'>✨ Magic 8 Ball ✨</div>", unsafe_allow_html=True)
 
-    st.write("")  # Quattro righe vuote
-    st.write("") 
-    st.write("")  
-    st.write("")  
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("")
 
     if st.session_state['gioco_attivo']:
         if not st.session_state['introduzione']:
             introduzione_gioco()
             st.session_state['introduzione'] = True
 
-        scelta = st.radio("🛣️ Scegli la tua strada:", 
-                          ("🔮 Futuro: Scopri cosa ti attende oltre l'orizzonte!", 
+        scelta = st.radio("🛣️ Scegli la tua strada:",
+                          ("🔮 Futuro: Scopri cosa ti attende oltre l'orizzonte!",
                            "🤹‍♂️ Simone: Esplora il mondo affascinante delle sue abilità nascoste!"))
 
         # Crea una lista per le domande suggerite
@@ -95,16 +99,15 @@ def avvia_gioco():
             st.write("💡 Esempi di domande:")
             suggerimenti = suggerisci_domande(tipo_richiesta)
             for i, esempio_domanda in enumerate(suggerimenti):
-                if st.button(esempio_domanda, key=f"suggerimento_{i}"):  # Aggiungi un key univoco per ogni pulsante
-                    # Aggiorna la domanda nello stato della sessione
-                    st.session_state['domanda'] = esempio_domanda
+                st.button(esempio_domanda, key=f"suggerimento_{i}", on_click=inserisci_domanda, args=(esempio_domanda,))
 
-        # Mostra il campo di input per la domanda
-        domanda = st.text_input("Fai una domanda:", value=st.session_state['domanda'])  # Precompila il campo se c'è una domanda nel sessione
+        # Mostra il campo di input per la domanda, usa una chiave univoca
+        domanda = st.text_input("Fai una domanda:", key='domanda_input', value=st.session_state['domanda'])
 
         # Aggiungi il pulsante "Cancella" per svuotare il campo di testo
         if st.button("Cancella"):
-            st.session_state['domanda'] = ''  # Svuota il campo di testo
+            st.session_state['domanda'] = ''  # Resetta la domanda
+            st.experimental_set_query_params(domanda="")  # Forza l'interfaccia ad aggiornare il campo di testo
 
         if "Futuro" in scelta:
             if st.button("Chiedi alla Magic Ball"):
@@ -114,7 +117,7 @@ def avvia_gioco():
                     crea_suspense()
                     risposta = random.choice(risposte_futuro)
                     st.success(f"🎱 La Magic 8 Ball dice: {risposta}")
-        
+
         elif "Simone" in scelta:
             if st.button("Chiedi alla Magic Ball"):
                 if not domanda.strip():
@@ -128,7 +131,6 @@ def avvia_gioco():
             termina_gioco()
 
     else:
-        # Messaggio di ringraziamento e istruzioni per visualizzare il codice su GitHub
         st.write("Grazie per aver giocato! 🎉")
         st.write("Vuoi scoprire come funziona la meravigliosa Magic 8 Ball? 🎱 Ecco come fare:")
         st.write("1. **Clicca sul Logo di GitHub** 🐱 (il gatto stilizzato) che si trova in alto a destra, accanto al pulsante 'Fork'")

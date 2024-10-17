@@ -143,7 +143,10 @@ def avvia_gioco():
             suggerimenti = suggerisci_domande(tipo_richiesta)
             for i, esempio_domanda in enumerate(suggerimenti):
                 st.button(esempio_domanda, key=f"suggerimento_{i}", on_click=inserisci_domanda, args=(esempio_domanda,))
-            st.write("💡 Consiglio: per una migliore accuratezza, rifletti su una domanda a cui si possa rispondere semplicemente con 'Sì' o 'No'. 🤔")
+            if tipo_richiesta == "simone":
+                st.write("💡 Consiglio: per una migliora accuratezza, chiedi di situazioni specifiche che evidenziano le abilità di Simone. 🤔")
+            else:
+                st.write("💡 Consiglio: rifletti su una domanda a cui si possa rispondere semplicemente con 'Sì' o 'No'. 🤔")
 
         # Mostra il campo di input per la domanda, con chiave dinamica basata su reset_key
         st.write("<div style='display: flex; align-items: center;'>", unsafe_allow_html=True)

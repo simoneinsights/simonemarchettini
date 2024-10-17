@@ -102,7 +102,9 @@ def avvia_gioco():
             st.write("💡 Esempi di domande:")
             suggerimenti = suggerisci_domande(tipo_richiesta)
             for i, esempio_domanda in enumerate(suggerimenti):
-                st.button(esempio_domanda, key=f"suggerimento_{i}", on_click=inserisci_domanda, args=(esempio_domanda,))
+                if st.button(esempio_domanda, key=f"suggerimento_{i}"):  # Evita callback asincrone
+                    st.session_state['domanda'] = esempio_domanda  # Setta la domanda immediatamente
+                    st.session_state['reset_key'] += 1  # Forza il re-render con reset_key
 
         # Mostra il campo di input per la domanda, con chiave dinamica basata su reset_key
         domanda = st.text_input("Fai una domanda:", key=f"domanda_input_{st.session_state['reset_key']}", value=st.session_state['domanda'])

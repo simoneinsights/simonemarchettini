@@ -14,7 +14,7 @@ if 'reset_key' not in st.session_state:
 
 # Funzione per mostrare l'introduzione con uno spinner di caricamento a sinistra dei messaggi
 def introduzione_gioco():
-    contenitore_messaggio = st.empty()
+    contenitore_messaggio = st.empty()  # Contenitore per i messaggi
     time.sleep(2)
     contenitore_messaggio.markdown("""
         <div style="display: flex; align-items: center;">
@@ -43,7 +43,7 @@ def introduzione_gioco():
         </div>
     """, unsafe_allow_html=True)
     time.sleep(6)
-    contenitore_messaggio.empty()
+    contenitore_messaggio.empty()  # Pulisce il contenitore
 
 # Aggiungi il CSS per lo spinner
 st.markdown("""
@@ -163,8 +163,7 @@ def avvia_gioco():
                     st.warning("Per favore, inserisci una domanda!")
                 else:
                     crea_suspense()
-                    risposta = random.choice(risposte_futuro)
-                    st.success(f"🎱 La Magic 8 Ball dice: <b>{risposta}</b>", unsafe_allow_html=True)
+                    st.markdown(f"<div class='stAlert success' style='text-align: center;'><b>🎱 La Magic 8 Ball dice: {random.choice(risposte_futuro)}</b></div>", unsafe_allow_html=True)
 
         elif "Simone" in scelta:
             if st.button("Chiedi alla Magic 8 Ball"):
@@ -172,8 +171,7 @@ def avvia_gioco():
                     st.warning("Per favore, inserisci una domanda!")
                 else:
                     crea_suspense()
-                    risposta = random.choice(risposte_simone)
-                    st.success(f"🎱 La Magic 8 Ball dice: <b>{risposta}</b>", unsafe_allow_html=True)
+                    st.markdown(f"<div class='stAlert success' style='text-align: center;'><b>🎱 La Magic 8 Ball dice: {random.choice(risposte_simone)}</b></div>", unsafe_allow_html=True)
 
         if st.button("Chiudi il gioco"):
             termina_gioco()

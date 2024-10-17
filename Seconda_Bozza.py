@@ -72,6 +72,7 @@ def crea_suspense():
 # Funzione per chiudere il gioco
 def termina_gioco():
     st.session_state['gioco_attivo'] = False
+    st.rerun()
 
 # Funzione callback per gestire l'inserimento delle domande suggerite
 def inserisci_domanda(esempio_domanda):

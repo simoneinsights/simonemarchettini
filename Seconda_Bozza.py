@@ -76,7 +76,7 @@ def termina_gioco():
 # Funzione callback per gestire l'inserimento delle domande suggerite
 def inserisci_domanda(esempio_domanda):
     st.session_state['domanda'] = esempio_domanda
-    st.session_state['reset_key'] += 1  # Forza il reset anche quando si clicca un suggerimento
+    st.session_state['reset_key'] += 1  # Aggiorna la chiave per forzare il reset
 
 # Funzione principale dell'applicazione
 def avvia_gioco():

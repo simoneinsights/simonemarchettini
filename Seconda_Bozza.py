@@ -146,31 +146,32 @@ def avvia_gioco():
             st.write("💡 Consiglio: Rifletti su una domanda a cui si possa rispondere semplicemente con 'Sì' o 'No'. 🤔")
 
         # Mostra il campo di input per la domanda, con chiave dinamica basata su reset_key
-        st.write("<div style='display: flex; align-items: center;'>", unsafe_allow_html=True)
         domanda = st.text_input("Fai una domanda:", key=f"domanda_input_{st.session_state['reset_key']}", value=st.session_state['domanda'])
-        if st.button("Cancella"):
-            st.session_state['domanda'] = ''  # Resetta la domanda
-            st.session_state['reset_key'] += 1  # Forza il reset del campo di input
-            st.rerun()
-        st.write("</div>", unsafe_allow_html=True)
 
-        if "Futuro" in scelta:
-            if st.button("Chiedi alla Magic 8 Ball"):
-                if not domanda.strip():
-                    st.warning("Per favore, inserisci una domanda!")
-                else:
-                    crea_suspense()
-                    risposta = random.choice(risposte_futuro)
-                    st.success(f"🎱 La Magic 8 Ball dice: {risposta}")
-
-        elif "Simone" in scelta:
-            if st.button("Chiedi alla Magic 8 Ball"):
-                if not domanda.strip():
-                    st.warning("Per favore, inserisci una domanda!")
-                else:
-                    crea_suspense()
-                    risposta = random.choice(risposte_simone)
-                    st.success(f"🎱 La Magic 8 Ball dice: {risposta}")
+        # Posiziona i pulsanti "Cancella" e "Chiedi alla Magic 8 Ball" vicini sotto la barra di input
+        col1, col2 = st.columns(2)
+        with col1:
+            if st.button("Cancella"):
+                st.session_state['domanda'] = ''  # Resetta la domanda
+                st.session_state['reset_key'] += 1  # Forza il reset del campo di input
+                st.rerun()
+        with col2:
+            if "Futuro" in scelta:
+                if st.button("Chiedi alla Magic 8 Ball"):
+                    if not domanda.strip():
+                        st.warning("Per favore, inserisci una domanda!")
+                    else:
+                        crea_suspense()
+                        risposta = random.choice(risposte_futuro)
+                        st.success(f"🎱 La Magic 8 Ball dice: {risposta}")
+            elif "Simone" in scelta:
+                if st.button("Chiedi alla Magic 8 Ball"):
+                    if not domanda.strip():
+                        st.warning("Per favore, inserisci una domanda!")
+                    else:
+                        crea_suspense()
+                        risposta = random.choice(risposte_simone)
+                        st.success(f"🎱 La Magic 8 Ball dice: {risposta}")
 
         if st.button("Chiudi il gioco"):
             termina_gioco()

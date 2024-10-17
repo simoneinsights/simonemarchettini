@@ -21,7 +21,7 @@ def introduzione_gioco():
             <div style="flex-shrink: 0; margin-right: 10px;">
                 <div class="loading-spinner"></div>
             </div>
-            <div>🎱 **Benvenuto** nella Magic 8 Ball!</div>
+            <div>🎱 <b>Benvenuto</b> nella Magic 8 Ball!</div>
         </div>
     """, unsafe_allow_html=True)
     time.sleep(3)
@@ -30,7 +30,7 @@ def introduzione_gioco():
             <div style="flex-shrink: 0; margin-right: 10px;">
                 <div class="loading-spinner"></div>
             </div>
-            <div>🎱 Desideri conoscere cosa il **destino** ha in serbo per te? Fai una **domanda** sul futuro!</div>
+            <div>🎱 Desideri conoscere cosa il <b>destino</b> ha in serbo per te? Fai una <b>domanda</b> sul futuro!</div>
         </div>
     """, unsafe_allow_html=True)
     time.sleep(6)
@@ -39,7 +39,7 @@ def introduzione_gioco():
             <div style="flex-shrink: 0; margin-right: 10px;">
                 <div class="loading-spinner"></div>
             </div>
-            <div>🎱 Vuoi scoprire le straordinarie doti di **Simone**? Fai una **domanda** e svela i suoi **talenti segreti**!</div>
+            <div>🎱 Vuoi scoprire le straordinarie doti di <b>Simone</b>? Fai una <b>domanda</b> e svela i suoi <b>talenti segreti</b>!</div>
         </div>
     """, unsafe_allow_html=True)
     time.sleep(6)

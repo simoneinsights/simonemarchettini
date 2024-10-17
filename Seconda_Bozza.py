@@ -101,6 +101,11 @@ def avvia_gioco():
         # Mostra il campo di input per la domanda
         domanda = st.text_input("Fai una domanda:", value=st.session_state['domanda'])  # Precompila il campo se c'è una domanda nel session state
 
+        # Aggiungi il pulsante "Cancella" per svuotare il campo di testo
+        if st.button("Cancella"):
+            st.session_state['domanda'] = ''  # Svuota il campo di testo
+            st.experimental_rerun()  # Ricarica la pagina per aggiornare l'input
+
         if "Futuro" in scelta:
             if st.button("Chiedi alla Magic Ball"):
                 if not domanda.strip():

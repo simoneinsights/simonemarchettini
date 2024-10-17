@@ -21,7 +21,7 @@ def introduzione_gioco():
             <div style="flex-shrink: 0; margin-right: 10px;">
                 <div class="loading-spinner"></div>
             </div>
-            <div>🎱 Benvenuto nella Magic 8 Ball!</div>
+            <div><b>🎱 Benvenuto nella Magic 8 Ball!</b></div>
         </div>
     """, unsafe_allow_html=True)
     time.sleep(3)
@@ -30,7 +30,7 @@ def introduzione_gioco():
             <div style="flex-shrink: 0; margin-right: 10px;">
                 <div class="loading-spinner"></div>
             </div>
-            <div>🎱 Desideri conoscere cosa il destino ha in serbo per te? Fai una domanda sul futuro!</div>
+            <div><b>🎱 Desideri conoscere cosa il destino ha in serbo per te? Fai una domanda sul futuro!</b></div>
         </div>
     """, unsafe_allow_html=True)
     time.sleep(6)
@@ -39,7 +39,7 @@ def introduzione_gioco():
             <div style="flex-shrink: 0; margin-right: 10px;">
                 <div class="loading-spinner"></div>
             </div>
-            <div>🎱 Vuoi scoprire le straordinarie doti di Simone? Fai una domanda e svela i suoi talenti segreti!</div>
+            <div><b>🎱 Vuoi scoprire le straordinarie doti di Simone? Fai una domanda e svela i suoi talenti segreti!</b></div>
         </div>
     """, unsafe_allow_html=True)
     time.sleep(6)
@@ -99,6 +99,7 @@ def suggerisci_domande(tipo_richiesta):
             "Simone è abile a scrivere domande divertenti senza l'aiuto di ChatGPT?",
             "Simone è capace di inviare un'email senza dimenticarsi l'allegato?"
         ]
+
 # Funzione per creare suspense
 def crea_suspense():
     st.write("🎱 La Magic 8 Ball sta pensando...")
@@ -163,7 +164,7 @@ def avvia_gioco():
                 else:
                     crea_suspense()
                     risposta = random.choice(risposte_futuro)
-                    st.success(f"🎱 La Magic 8 Ball dice: {risposta}")
+                    st.success(f"🎱 La Magic 8 Ball dice: <b>{risposta}</b>", unsafe_allow_html=True)
 
         elif "Simone" in scelta:
             if st.button("Chiedi alla Magic 8 Ball"):
@@ -172,7 +173,7 @@ def avvia_gioco():
                 else:
                     crea_suspense()
                     risposta = random.choice(risposte_simone)
-                    st.success(f"🎱 La Magic 8 Ball dice: {risposta}")
+                    st.success(f"🎱 La Magic 8 Ball dice: <b>{risposta}</b>", unsafe_allow_html=True)
 
         if st.button("Chiudi il gioco"):
             termina_gioco()

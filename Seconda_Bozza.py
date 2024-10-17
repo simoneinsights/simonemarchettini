@@ -75,8 +75,8 @@ def termina_gioco():
 
 # Funzione callback per gestire l'inserimento delle domande suggerite
 def inserisci_domanda(esempio_domanda):
-    st.session_state['domanda'] = esempio_domanda
-    st.session_state['reset_key'] += 1  # Aggiorna la chiave per forzare il reset
+    st.session_state['domanda'] = esempio_domanda  # Inserisce la domanda nel campo di input
+    st.session_state['reset_key'] += 1  # Forza il reset del campo di input
 
 # Funzione principale dell'applicazione
 def avvia_gioco():
@@ -102,9 +102,7 @@ def avvia_gioco():
             st.write("💡 Esempi di domande:")
             suggerimenti = suggerisci_domande(tipo_richiesta)
             for i, esempio_domanda in enumerate(suggerimenti):
-                if st.button(esempio_domanda, key=f"suggerimento_{i}"):  # Evita callback asincrone
-                    st.session_state['domanda'] = esempio_domanda  # Setta la domanda immediatamente
-                    st.session_state['reset_key'] += 1  # Forza il re-render con reset_key
+                st.button(esempio_domanda, key=f"suggerimento_{i}", on_click=inserisci_domanda, args=(esempio_domanda,))
 
         # Mostra il campo di input per la domanda, con chiave dinamica basata su reset_key
         domanda = st.text_input("Fai una domanda:", key=f"domanda_input_{st.session_state['reset_key']}", value=st.session_state['domanda'])
@@ -112,7 +110,7 @@ def avvia_gioco():
         # Aggiungi il pulsante "Cancella" per svuotare il campo di testo
         if st.button("Cancella"):
             st.session_state['domanda'] = ''  # Resetta la domanda
-            st.session_state['reset_key'] += 1  # Aggiorna la chiave per forzare il reset
+            st.session_state['reset_key'] += 1  # Forza il reset del campo di input
 
         if "Futuro" in scelta:
             if st.button("Chiedi alla Magic Ball"):

@@ -95,11 +95,8 @@ def suggerisci_domande(tipo_richiesta):
     elif tipo_richiesta == "simone":
         return [
 "Simone è capace di rispettare una scadenza senza impostare promemoria anche sul forno a microonde?",
-
 "Simone riesce a non perdere le staffe quando il Wi-Fi va in panne?",
-
 "Simone è abile a scrivere domande divertenti senza l'aiuto di ChatGPT?",
-
 "Simone è capace di inviare un'email scrivendo 'in allegato la presentazione' senza dimenticarsi l'allegato?"
         ]
 

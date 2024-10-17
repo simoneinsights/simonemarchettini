@@ -149,13 +149,15 @@ def avvia_gioco():
         domanda = st.text_input("Fai una domanda:", key=f"domanda_input_{st.session_state['reset_key']}", value=st.session_state['domanda'])
 
         # Posiziona i pulsanti "Cancella" e "Chiedi alla Magic 8 Ball" vicini sotto la barra di input
-        col1, col2 = st.columns(2)
+        col1, col2, col3 = st.columns([3, 1, 1])
         with col1:
+            st.write("")  # Spazio tra il campo di input e i pulsanti
+        with col2:
             if st.button("Cancella"):
                 st.session_state['domanda'] = ''  # Resetta la domanda
                 st.session_state['reset_key'] += 1  # Forza il reset del campo di input
                 st.rerun()
-        with col2:
+        with col3:
             if "Futuro" in scelta:
                 if st.button("Chiedi alla Magic 8 Ball"):
                     if not domanda.strip():

@@ -15,7 +15,7 @@ if 'reset_key' not in st.session_state:
 # Funzione per mostrare l'introduzione con uno spinner di caricamento a sinistra dei messaggi
 def introduzione_gioco():
     contenitore_messaggio = st.empty()
-    time.sleep(1)
+    time.sleep(2)
     contenitore_messaggio.markdown("""
         <div style="display: flex; align-items: center;">
             <div style="flex-shrink: 0; margin-right: 10px;">

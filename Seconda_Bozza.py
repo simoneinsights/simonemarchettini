@@ -102,6 +102,7 @@ def suggerisci_domande(tipo_richiesta):
 
 # Funzione per creare suspense
 def crea_suspense():
+    st.write("🎱 La Magic 8 Ball sta pensando...")
     barra_progresso = st.progress(0)
     for completamento in range(101):
         time.sleep(0.03)

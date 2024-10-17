@@ -146,17 +146,13 @@ def avvia_gioco():
                 st.write("💡 Consiglio: Rifletti su una domanda a cui si possa rispondere semplicemente con 'Sì' o 'No'. 🤔")
 
         # Mostra il campo di input per la domanda, con chiave dinamica basata su reset_key
-        st.markdown("""
-        <div style='display: flex; align-items: center;'>
-            <input type='text' id='domanda_input' value='' style='flex: 1; margin-right: 10px;'/>
-            <button onclick='document.getElementById("domanda_input").value=""'>Cancella</button>
-        </div>
-        """, unsafe_allow_html=True)
+        st.write("<div style='display: flex; align-items: center;'>", unsafe_allow_html=True)
         domanda = st.text_input("Fai una domanda:", key=f"domanda_input_{st.session_state['reset_key']}", value=st.session_state['domanda'])
         if st.button("Cancella"):
             st.session_state['domanda'] = ''  # Resetta la domanda
             st.session_state['reset_key'] += 1  # Forza il reset del campo di input
             st.rerun()
+        st.write("</div>", unsafe_allow_html=True)
 
         if "Futuro" in scelta:
             if st.button("Chiedi alla Magic 8 Ball"):

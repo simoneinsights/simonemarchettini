@@ -9,6 +9,8 @@ if 'introduzione' not in st.session_state:
     st.session_state['introduzione'] = False
 if 'domanda' not in st.session_state:
     st.session_state['domanda'] = ''
+if 'reset_key' not in st.session_state:
+    st.session_state['reset_key'] = 0  # Chiave per forzare il reset del campo input
 
 # Funzione per mostrare l'introduzione
 def introduzione_gioco():
@@ -101,13 +103,13 @@ def avvia_gioco():
             for i, esempio_domanda in enumerate(suggerimenti):
                 st.button(esempio_domanda, key=f"suggerimento_{i}", on_click=inserisci_domanda, args=(esempio_domanda,))
 
-        # Mostra il campo di input per la domanda, usa una chiave univoca
-        domanda = st.text_input("Fai una domanda:", key='domanda_input', value=st.session_state['domanda'])
+        # Mostra il campo di input per la domanda, con chiave dinamica basata su reset_key
+        domanda = st.text_input("Fai una domanda:", key=f"domanda_input_{st.session_state['reset_key']}", value=st.session_state['domanda'])
 
         # Aggiungi il pulsante "Cancella" per svuotare il campo di testo
         if st.button("Cancella"):
             st.session_state['domanda'] = ''  # Resetta la domanda
-            st.experimental_set_query_params(domanda="")  # Forza l'interfaccia ad aggiornare il campo di testo
+            st.session_state['reset_key'] += 1  # Aggiorna la chiave per forzare il reset
 
         if "Futuro" in scelta:
             if st.button("Chiedi alla Magic Ball"):

@@ -33,7 +33,7 @@ def introduzione_gioco():
             <div>🎱 Desideri conoscere cosa il destino ha in serbo per te? Fai una domanda sul futuro!</div>
         </div>
     """, unsafe_allow_html=True)
-    time.sleep(5)
+    time.sleep(6)
     contenitore_messaggio.markdown("""
         <div style="display: flex; align-items: center;">
             <div style="flex-shrink: 0; margin-right: 10px;">
@@ -42,7 +42,7 @@ def introduzione_gioco():
             <div>🎱 Vuoi scoprire le straordinarie doti di Simone? Fai una domanda e svela i suoi talenti segreti!</div>
         </div>
     """, unsafe_allow_html=True)
-    time.sleep(5)
+    time.sleep(6)
     contenitore_messaggio.empty()
 
 # Aggiungi il CSS per lo spinner

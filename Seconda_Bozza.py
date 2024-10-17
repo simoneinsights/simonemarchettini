@@ -17,16 +17,31 @@ def introduzione_gioco():
     contenitore_messaggio = st.empty()  # Contenitore per i messaggi
     time.sleep(2)
     contenitore_messaggio.markdown("""
-        **🎱 Benvenuto nella Magic 8 Ball!**
-    """)
+        <div style="display: flex; align-items: center;">
+            <div style="flex-shrink: 0; margin-right: 10px;">
+                <div class="loading-spinner"></div>
+            </div>
+            <div>🎱 **Benvenuto** nella Magic 8 Ball!</div>
+        </div>
+    """, unsafe_allow_html=True)
     time.sleep(3)
     contenitore_messaggio.markdown("""
-        **🎱 Desideri conoscere cosa il destino ha in serbo per te? Fai una domanda sul futuro!**
-    """)
+        <div style="display: flex; align-items: center;">
+            <div style="flex-shrink: 0; margin-right: 10px;">
+                <div class="loading-spinner"></div>
+            </div>
+            <div>🎱 Desideri conoscere cosa il **destino** ha in serbo per te? Fai una **domanda** sul futuro!</div>
+        </div>
+    """, unsafe_allow_html=True)
     time.sleep(6)
     contenitore_messaggio.markdown("""
-        **🎱 Vuoi scoprire le straordinarie doti di Simone? Fai una domanda e svela i suoi talenti segreti!**
-    """)
+        <div style="display: flex; align-items: center;">
+            <div style="flex-shrink: 0; margin-right: 10px;">
+                <div class="loading-spinner"></div>
+            </div>
+            <div>🎱 Vuoi scoprire le straordinarie doti di **Simone**? Fai una **domanda** e svela i suoi **talenti segreti**!</div>
+        </div>
+    """, unsafe_allow_html=True)
     time.sleep(6)
     contenitore_messaggio.empty()  # Pulisce il contenitore
 
@@ -105,7 +120,7 @@ def inserisci_domanda(esempio_domanda):
 
 # Funzione principale dell'applicazione
 def avvia_gioco():
-    st.markdown("**✨ Magic 8 Ball ✨**", unsafe_allow_html=True)
+    st.markdown("<div style='text-align: center; font-size: 40px; font-weight: bold;'>✨ Magic 8 Ball ✨</div>", unsafe_allow_html=True)
 
     st.write("")
     st.write("")
@@ -124,7 +139,7 @@ def avvia_gioco():
         # Crea una lista per le domande suggerite
         if st.button("Mostra suggerimenti"):
             tipo_richiesta = "futuro" if "Futuro" in scelta else "simone"
-            st.write("**❓ Esempi di domande:**")
+            st.write("❓ **Esempi di domande:**")
             suggerimenti = suggerisci_domande(tipo_richiesta)
             for i, esempio_domanda in enumerate(suggerimenti):
                 st.button(esempio_domanda, key=f"suggerimento_{i}", on_click=inserisci_domanda, args=(esempio_domanda,))

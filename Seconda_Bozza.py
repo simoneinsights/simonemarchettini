@@ -77,7 +77,6 @@ def termina_gioco():
 def inserisci_domanda(esempio_domanda):
     st.session_state['domanda'] = esempio_domanda  # Inserisce la domanda nel campo di input
     st.session_state['reset_key'] += 1  # Forza il reset del campo di input
-    st.rerun()
 
 # Funzione principale dell'applicazione
 def avvia_gioco():

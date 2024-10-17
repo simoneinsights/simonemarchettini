@@ -154,7 +154,7 @@ def avvia_gioco():
             st.rerun()
 
         if "Futuro" in scelta:
-            if st.button("Chiedi alla Magic Ball"):
+            if st.button("Chiedi alla Magic 8 Ball"):
                 if not domanda.strip():
                     st.warning("Per favore, inserisci una domanda!")
                 else:
@@ -163,7 +163,7 @@ def avvia_gioco():
                     st.success(f"🎱 La Magic 8 Ball dice: {risposta}")
 
         elif "Simone" in scelta:
-            if st.button("Chiedi alla Magic Ball"):
+            if st.button("Chiedi alla Magic 8 Ball"):
                 if not domanda.strip():
                     st.warning("Per favore, inserisci una domanda!")
                 else:

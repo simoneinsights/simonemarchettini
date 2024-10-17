@@ -105,7 +105,7 @@ def avvia_gioco():
         # Aggiungi il pulsante "Cancella" per svuotare il campo di testo
         if st.button("Cancella"):
             st.session_state['domanda'] = ''  # Svuota il campo di testo
-            st.experimental_rerun()  # Aggiorna l'interfaccia
+            st.rerun()  # Aggiorna l'interfaccia
 
         if "Futuro" in scelta:
             if st.button("Chiedi alla Magic Ball"):
@@ -127,7 +127,7 @@ def avvia_gioco():
 
         if st.button("Chiudi il gioco"):
             termina_gioco()
-            st.experimental_rerun()
+            st.rerun()
 
     else:
         # Messaggio di ringraziamento e istruzioni per visualizzare il codice su GitHub

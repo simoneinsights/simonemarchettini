@@ -12,18 +12,57 @@ if 'domanda' not in st.session_state:
 if 'reset_key' not in st.session_state:
     st.session_state['reset_key'] = 0  # Chiave per forzare il reset del campo input
 
-# Funzione per mostrare l'introduzione
+# Funzione per mostrare l'introduzione con uno spinner di caricamento a sinistra dei messaggi
 def introduzione_gioco():
     contenitore_messaggio = st.empty()
-    with st.spinner(" "):
+    with st.spinner("Caricamento..."):
         time.sleep(1)
-        contenitore_messaggio.write("🎱 Benvenuto nella Magic 8 Ball!")
+        contenitore_messaggio.markdown("""
+            <div style="display: flex; align-items: center;">
+                <div style="flex-shrink: 0; margin-right: 10px;">
+                    <div class="loading-spinner"></div>
+                </div>
+                <div>🎱 Benvenuto nella Magic 8 Ball!</div>
+            </div>
+        """, unsafe_allow_html=True)
         time.sleep(3)
-        contenitore_messaggio.write("🎱 Desideri conoscere cosa il destino ha in serbo per te? Fai una domanda sul futuro!")
-        time.sleep(6)
-        contenitore_messaggio.write("🎱 Vuoi scoprire le straordinarie doti di Simone? Fai una domanda e svela i suoi talenti segreti!")
-        time.sleep(6)
+        contenitore_messaggio.markdown("""
+            <div style="display: flex; align-items: center;">
+                <div style="flex-shrink: 0; margin-right: 10px;">
+                    <div class="loading-spinner"></div>
+                </div>
+                <div>🎱 Desideri conoscere cosa il destino ha in serbo per te? Fai una domanda sul futuro!</div>
+            </div>
+        """, unsafe_allow_html=True)
+        time.sleep(5)
+        contenitore_messaggio.markdown("""
+            <div style="display: flex; align-items: center;">
+                <div style="flex-shrink: 0; margin-right: 10px;">
+                    <div class="loading-spinner"></div>
+                </div>
+                <div>🎱 Vuoi scoprire le straordinarie doti di Simone? Fai una domanda e svela i suoi talenti segreti!</div>
+            </div>
+        """, unsafe_allow_html=True)
+        time.sleep(5)
         contenitore_messaggio.empty()
+
+# Aggiungi il CSS per lo spinner
+st.markdown("""
+    <style>
+    .loading-spinner {
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border-left-color: #09f;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+    </style>
+""", unsafe_allow_html=True)
 
 # Liste di risposte per il futuro e per Simone
 risposte_futuro = [

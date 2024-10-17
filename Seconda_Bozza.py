@@ -50,8 +50,8 @@ st.markdown("""
 <style>
 .loading-spinner {
     border: 4px solid rgba(0, 0, 0, 0.1);
-    width: 15px;
-    height: 15px;
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
     border-left-color: #09f;
     animation: spin 1s linear infinite;

@@ -21,7 +21,7 @@ def introduzione_gioco():
             <div style="flex-shrink: 0; margin-right: 10px;">
                 <div class="loading-spinner"></div>
             </div>
-            <div><b>🎱 Benvenuto nella Magic 8 Ball!</b></div>
+            <div><b>🎱 <b>Benvenuto</b> nella <b>Magic 8 Ball</b>!</b></div>
         </div>
     """, unsafe_allow_html=True)
     time.sleep(3)
@@ -30,7 +30,7 @@ def introduzione_gioco():
             <div style="flex-shrink: 0; margin-right: 10px;">
                 <div class="loading-spinner"></div>
             </div>
-            <div><b>🎱 Desideri conoscere cosa il destino ha in serbo per te? Fai una domanda sul futuro!</b></div>
+            <div><b>🎱 Desideri conoscere cosa il <b>destino</b> ha in serbo per te? Fai una <b>domanda</b> sul <b>futuro</b>!</b></div>
         </div>
     """, unsafe_allow_html=True)
     time.sleep(6)
@@ -39,7 +39,7 @@ def introduzione_gioco():
             <div style="flex-shrink: 0; margin-right: 10px;">
                 <div class="loading-spinner"></div>
             </div>
-            <div><b>🎱 Vuoi scoprire le straordinarie doti di Simone? Fai una domanda e svela i suoi talenti segreti!</b></div>
+            <div><b>🎱 Vuoi scoprire le straordinarie doti di <b>Simone</b>? Fai una <b>domanda</b> e svela i suoi <b>talenti segreti</b>!</b></div>
         </div>
     """, unsafe_allow_html=True)
     time.sleep(6)
@@ -133,24 +133,24 @@ def avvia_gioco():
             st.session_state['introduzione'] = True
 
         scelta = st.radio("🛣️ Scegli la tua strada:",
-                          ("🔮 Futuro: Scopri cosa ti attende oltre l'orizzonte!",
-                           "🤹‍♂️ Simone: Esplora il mondo affascinante delle sue abilità nascoste!"))
+                          ("🔮 <b>Futuro</b>: Scopri cosa ti attende oltre l'orizzonte!",
+                           "🤹‍♂️ <b>Simone</b>: Esplora il mondo affascinante delle sue <b>abilità nascoste</b>!"))
 
         # Crea una lista per le domande suggerite
         if st.button("Mostra suggerimenti"):
             tipo_richiesta = "futuro" if "Futuro" in scelta else "simone"
-            st.write("❓ Esempi di domande:")
+            st.write("❓ <b>Esempi di domande</b>:")
             suggerimenti = suggerisci_domande(tipo_richiesta)
             for i, esempio_domanda in enumerate(suggerimenti):
                 st.button(esempio_domanda, key=f"suggerimento_{i}", on_click=inserisci_domanda, args=(esempio_domanda,))
             if tipo_richiesta == "simone":
-                st.write("💡 Consiglio: per una migliore accuratezza, chiedi di situazioni specifiche che evidenziano le abilità di Simone. 🤔")
+                st.write("💡 <b>Consiglio</b>: per una migliore accuratezza, chiedi di situazioni specifiche che evidenziano le <b>abilità di Simone</b>. 🤔")
             else:
-                st.write("💡 Consiglio: per una migliore accuratezza, rifletti su una domanda a cui si possa rispondere semplicemente con 'Sì' o 'No'. 🤔")
+                st.write("💡 <b>Consiglio</b>: per una migliore accuratezza, rifletti su una <b>domanda</b> a cui si possa rispondere semplicemente con <b>'Sì' o 'No'</b>. 🤔")
 
         # Mostra il campo di input per la domanda, con chiave dinamica basata su reset_key
         st.write("<div style='display: flex; align-items: center;'>", unsafe_allow_html=True)
-        domanda = st.text_input("Fai una domanda:", key=f"domanda_input_{st.session_state['reset_key']}", value=st.session_state['domanda'])
+        domanda = st.text_input("Fai una <b>domanda</b>:", key=f"domanda_input_{st.session_state['reset_key']}", value=st.session_state['domanda'])
         if st.button("Cancella"):
             st.session_state['domanda'] = ''  # Resetta la domanda
             st.session_state['reset_key'] += 1  # Forza il reset del campo di input
@@ -160,7 +160,7 @@ def avvia_gioco():
         if "Futuro" in scelta:
             if st.button("Chiedi alla Magic 8 Ball"):
                 if not domanda.strip():
-                    st.warning("Per favore, inserisci una domanda!")
+                    st.warning("Per favore, inserisci una <b>domanda</b>!")
                 else:
                     crea_suspense()
                     st.markdown(f"<div class='stAlert success' style='text-align: center;'><b>🎱 La Magic 8 Ball dice: {random.choice(risposte_futuro)}</b></div>", unsafe_allow_html=True)
@@ -168,7 +168,7 @@ def avvia_gioco():
         elif "Simone" in scelta:
             if st.button("Chiedi alla Magic 8 Ball"):
                 if not domanda.strip():
-                    st.warning("Per favore, inserisci una domanda!")
+                    st.warning("Per favore, inserisci una <b>domanda</b>!")
                 else:
                     crea_suspense()
                     st.markdown(f"<div class='stAlert success' style='text-align: center;'><b>🎱 La Magic 8 Ball dice: {random.choice(risposte_simone)}</b></div>", unsafe_allow_html=True)
@@ -179,9 +179,9 @@ def avvia_gioco():
     else:
         st.write("Grazie per aver giocato! 🎉")
         st.write("Vuoi scoprire come funziona la meravigliosa Magic 8 Ball? 🎱 Ecco come fare:")
-        st.write("1. **Clicca sul Logo di GitHub** 🐱 (il gatto stilizzato) che si trova in alto a destra, accanto al pulsante 'Fork'")
-        st.write("2. Una volta cliccato, si aprirà la pagina del progetto, dove potrai esplorare il codice sorgente scritto in Python e Streamlit. Buona esplorazione! 🔍")
-        st.write("Non dimenticare di condividere le tue profezie in riunione... e di menzionare il talentuoso Simone ai recruiter! 🚀")
+        st.write("1. **Clicca sul <b>Logo di GitHub</b>** 🐱 (il gatto stilizzato) che si trova in alto a destra, accanto al pulsante 'Fork'")
+        st.write("2. Una volta cliccato, si aprirà la pagina del progetto, dove potrai esplorare il codice sorgente scritto in <b>Python</b> e <b>Streamlit</b>. Buona esplorazione! 🔍")
+        st.write("Non dimenticare di condividere le tue profezie in riunione... e di menzionare il <b>talentuoso Simone</b> ai recruiter! 🚀")
         st.write("A presto! 👋")
 
 # Esegue la funzione principale

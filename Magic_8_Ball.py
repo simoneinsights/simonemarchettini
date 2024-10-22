@@ -180,7 +180,7 @@ def avvia_gioco():
         st.write("**Grazie** per aver giocato! 🎉")
         st.write("Vuoi scoprire come funziona la meravigliosa **Magic 8 Ball**? 🎱 Ecco come fare:")
         st.write("1. Clicca sul **Logo di GitHub** 🐱 (il gatto stilizzato) che si trova in alto a destra, accanto al pulsante '**Fork**'.")
-        st.write("2. Una volta cliccato, si aprirà la pagina del **progetto**, dove potrai esplorare il **codice sorgente** scritto in **Python** per la logica dell'applicazione, **HTML** per la creazione di elementi visivi personalizzati, CSS per stilizzare componenti come gli spinner, e **Streamlit** per rendere l'interfaccia interattiva. Buona esplorazione! 🔍")
+        st.write("2. Una volta cliccato, si aprirà la pagina del **progetto**, dove potrai esplorare il **codice sorgente** scritto in **Python** per la logica dell'applicazione, **HTML** per la creazione di elementi visivi personalizzati, **CSS** per stilizzare componenti come gli spinner, e **Streamlit** per rendere l'interfaccia interattiva. Buona esplorazione! 🔍")
         st.write("Non dimenticare di **condividere** le tue **profezie** in riunione... e di menzionare il talentuoso **Simone** ai **recruiter**! 🚀")
         st.write("A presto! 👋")
 

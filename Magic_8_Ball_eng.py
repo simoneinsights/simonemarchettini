@@ -180,7 +180,7 @@ def start_game():
         st.write("**Thank you** for playing! 🎉")
         st.write("Want to discover how the wonderful **Magic 8 Ball** works? 🎱 Here's how:")
         st.write("1. Click on the **GitHub Logo** 🐱 (the stylized cat) at the top right, next to the '**Fork**' button.")
-        st.write("2. Once clicked, the **project** page will open, where you can explore the **source code** written in **Python** for the app's logic, **HTML** for creating custom visual elements, and **Streamlit** for making the interface interactive. Happy exploring! 🔍")
+        st.write("2. Once clicked, the **project** page will open, where you can explore the **source code** written in **Python** for the app's logic, **HTML** for creating custom visual elements, **CSS** for styling components like spinners, and **Streamlit** for making the interface interactive. Happy exploring! 🔍")
         st.write("Don't forget to **share** your **prophecies** in the meeting... and mention the talented **Simone** to the **recruiters**! 🚀")
         st.write("See you soon! 👋")
 
